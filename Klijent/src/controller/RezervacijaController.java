@@ -9,6 +9,8 @@ import domain.Trening;
 import java.util.List;
 import komunikacija.Komunikacija;
 import komunikacija.KreirajRezervacijuRequest;
+import komunikacija.PretraziRezervacijuRequest;
+import komunikacija.RezervacijaPretraga;
 
 public class RezervacijaController {
 
@@ -18,7 +20,7 @@ public class RezervacijaController {
         return rezervacija;
     }
 
-    public List<Rezervacija> pretraziRezervaciju(Rezervacija kriterijum) throws Exception {
+    public List<RezervacijaPretraga> pretraziRezervaciju(PretraziRezervacijuRequest kriterijum) throws Exception {
         return Komunikacija.getInstance().pretraziRezervaciju(kriterijum);
     }
 

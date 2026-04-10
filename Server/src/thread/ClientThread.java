@@ -12,8 +12,10 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.util.List;
 import komunikacija.KreirajRezervacijuRequest;
+import komunikacija.PretraziRezervacijuRequest;
 import komunikacija.PrijavaSportskiObjekatRequest;
 import komunikacija.Receiver;
+import komunikacija.RezervacijaPretraga;
 import komunikacija.Request;
 import komunikacija.Response;
 import komunikacija.Sender;
@@ -74,8 +76,8 @@ public class ClientThread extends Thread {
                 response.setResponse(ServerController.getInstance().ubaciRezervaciju(zahtev));
             }
             case PRETRAZI_REZERVACIJU -> {
-                Rezervacija kriterijum = (Rezervacija) request.getArgument();
-                List<Rezervacija> rezervacije = ServerController.getInstance().pretraziRezervaciju(kriterijum);
+                PretraziRezervacijuRequest kriterijum = (PretraziRezervacijuRequest) request.getArgument();
+                List<RezervacijaPretraga> rezervacije = ServerController.getInstance().pretraziRezervaciju(kriterijum);
                 response.setResponse(rezervacije);
             }
             case VRATI_LISTU_REZERVACIJA -> {

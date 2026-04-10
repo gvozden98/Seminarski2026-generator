@@ -60,8 +60,8 @@ public class Komunikacija {
     }
 
     @SuppressWarnings("unchecked")
-    public List<Rezervacija> pretraziRezervaciju(Rezervacija kriterijum) throws Exception {
-        return (List<Rezervacija>) posaljiRequest(new Request(Operation.PRETRAZI_REZERVACIJU, kriterijum));
+    public List<RezervacijaPretraga> pretraziRezervaciju(PretraziRezervacijuRequest kriterijum) throws Exception {
+        return (List<RezervacijaPretraga>) posaljiRequest(new Request(Operation.PRETRAZI_REZERVACIJU, kriterijum));
     }
 
     @SuppressWarnings("unchecked")

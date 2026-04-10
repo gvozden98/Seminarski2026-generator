@@ -7,7 +7,9 @@ import domain.SportskiObjekat;
 import domain.TipOpreme;
 import domain.Trening;
 import java.util.List;
+import komunikacija.PretraziRezervacijuRequest;
 import komunikacija.PrijavaSportskiObjekatRequest;
+import komunikacija.RezervacijaPretraga;
 import so.SOObrisiKategorijaClanstva;
 import so.SOObrisiKorisnik;
 import so.SOObrisiTrening;
@@ -64,7 +66,7 @@ public class ServerController {
         return so.getRezervacija();
     }
 
-    public List<Rezervacija> pretraziRezervaciju(Rezervacija kriterijum) throws Exception {
+    public List<RezervacijaPretraga> pretraziRezervaciju(PretraziRezervacijuRequest kriterijum) throws Exception {
         SOPretraziRezervaciju so = new SOPretraziRezervaciju();
         so.execute(kriterijum);
         return so.getRezervacije();
