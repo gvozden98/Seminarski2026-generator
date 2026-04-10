@@ -4,6 +4,16 @@
  */
 package forme;
 
+import domain.Korisnik;
+import domain.Trening;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusListener;
+import java.awt.event.ItemListener;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.event.MenuListener;
+import models.StavkaRezervacijeTableModel;
+
 /**
  *
  * @author Ognjen
@@ -15,6 +25,11 @@ public class KreirajRezervacijuForma extends javax.swing.JFrame {
      */
     public KreirajRezervacijuForma() {
         initComponents();
+        setLocationRelativeTo(null);
+        jTable1.setModel(new StavkaRezervacijeTableModel());
+        jTextField2.setEditable(false);
+        jTextField3.setEditable(false);
+        jTextField6.setEditable(false);
     }
 
     /**
@@ -36,7 +51,6 @@ public class KreirajRezervacijuForma extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -48,6 +62,8 @@ public class KreirajRezervacijuForma extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jTextField4 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -62,23 +78,13 @@ public class KreirajRezervacijuForma extends javax.swing.JFrame {
 
         jButton3.setText("Nazad");
 
-        jTextField5.setText("jTextField5");
-
         jButton4.setText("Rezervisi");
 
         jLabel1.setText("Datum:");
 
         jLabel6.setText("Datum i vreme zavrsetka:");
 
-        jTextField1.setText("jTextField1");
-
-        jTextField6.setText("jTextField6");
-
         jLabel2.setText("Ukupan iznos:");
-
-        jLabel7.setText("--NAZIV TRENINGA--");
-
-        jTextField2.setText("jTextField2");
 
         jLabel3.setText("Ukupan popst:");
 
@@ -95,17 +101,13 @@ public class KreirajRezervacijuForma extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jTextField3.setText("jTextField3");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel8.setText("Korisnik");
 
         jLabel4.setText("Trajanje:");
 
         jButton1.setText("Dodaj stavku");
 
-        jTextField4.setText("jTextField4");
+        jLabel9.setText("Trening");
 
         jMenu1.setText("Pocetna");
         jMenuBar1.add(jMenu1);
@@ -153,22 +155,25 @@ public class KreirajRezervacijuForma extends javax.swing.JFrame {
                                     .addComponent(jLabel8)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(22, 22, 22)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel4)
                                         .addGap(18, 18, 18)
                                         .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel6)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jButton2)
-                                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel5)
+                                            .addComponent(jLabel9))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(22, 22, 22)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,28 +190,31 @@ public class KreirajRezervacijuForma extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel8)))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel8)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23)
+                        .addComponent(jLabel9))
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -234,6 +242,70 @@ public class KreirajRezervacijuForma extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    public void nazadAddActionListener(ActionListener actionListener) {
+        jButton3.addActionListener(actionListener);
+    }
+
+    public void pocetnaAddMenuListener(MenuListener menuListener) {
+        jMenu1.addMenuListener(menuListener);
+    }
+
+    public void kreirajAddMenuListener(MenuListener menuListener) {
+        jMenu2.addMenuListener(menuListener);
+    }
+
+    public void izmeniAddMenuListener(MenuListener menuListener) {
+        jMenu3.addMenuListener(menuListener);
+    }
+
+    public void pretraziAddMenuListener(MenuListener menuListener) {
+        jMenu4.addMenuListener(menuListener);
+    }
+
+    public void setKorisnici(List<Korisnik> korisnici) {
+        DefaultComboBoxModel<Korisnik> model = new DefaultComboBoxModel<Korisnik>();
+        for (Korisnik korisnik : korisnici) {
+            model.addElement(korisnik);
+        }
+        jComboBox1.setModel(model);
+    }
+
+    public void setTreninzi(List<Trening> treninzi) {
+        DefaultComboBoxModel<Trening> model = new DefaultComboBoxModel<Trening>();
+        for (Trening trening : treninzi) {
+            model.addElement(trening);
+        }
+        jComboBox2.setModel(model);
+    }
+
+    public void treningAddItemListener(ItemListener itemListener) {
+        jComboBox2.addItemListener(itemListener);
+    }
+
+    public void datumPocetkaAddFocusListener(FocusListener focusListener) {
+        jTextField5.addFocusListener(focusListener);
+    }
+
+    public Trening getSelektovaniTrening() {
+        return (Trening) jComboBox2.getSelectedItem();
+    }
+
+    public String getDatumVremePocetka() {
+        return jTextField5.getText().trim();
+    }
+
+    public String getTrajanje() {
+        return jTextField4.getText().trim();
+    }
+
+    public void setTrajanje(String trajanje) {
+        jTextField4.setText(trajanje);
+    }
+
+    public void setDatumVremeZavrsetka(String datumVremeZavrsetka) {
+        jTextField6.setText(datumVremeZavrsetka);
+    }
 
     /**
      * @param args the command line arguments
@@ -276,15 +348,16 @@ public class KreirajRezervacijuForma extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<Korisnik> jComboBox1;
+    private javax.swing.JComboBox<Trening> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;

@@ -5,6 +5,7 @@
 package forme;
 
 import domain.SportskiObjekat;
+import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.Timer;
@@ -100,6 +101,10 @@ public class GlavnaForma extends javax.swing.JFrame {
     private void rezervacijeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rezervacijeBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rezervacijeBtnActionPerformed
+
+    public void rezervacijeAddActionListener(ActionListener actionListener) {
+        rezervacijeBtn.addActionListener(actionListener);
+    }
 
     public void setUlogovaniSportskiObjekat(SportskiObjekat sportskiObjekat) {
         if (sportskiObjekat == null) {

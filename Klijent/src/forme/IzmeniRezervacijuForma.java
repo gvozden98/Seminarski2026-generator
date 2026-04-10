@@ -4,6 +4,8 @@
  */
 package forme;
 
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author Ognjen
@@ -15,6 +17,7 @@ public class IzmeniRezervacijuForma extends javax.swing.JFrame {
      */
     public IzmeniRezervacijuForma() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -151,6 +154,10 @@ public class IzmeniRezervacijuForma extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    public void nazadAddActionListener(ActionListener actionListener) {
+        jButton1.addActionListener(actionListener);
+    }
 
     /**
      * @param args the command line arguments
